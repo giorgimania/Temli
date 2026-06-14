@@ -78,9 +78,19 @@ function Header() {
 // Hero Section
 function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-br from-secondary to-background py-20 md:py-32">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl">
+    <section className="relative overflow-hidden bg-background py-20 md:py-32">
+      <img
+        src="/worker-flooring.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{
+          maskImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.65) 50%, rgba(0, 0, 0, 1) 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.65) 50%, rgba(0, 0, 0, 1) 100%)',
+        }}
+      />
+      <div className="container relative mx-auto px-4">
+        <div className="max-w-3xl drop-shadow-[0_2px_18px_rgba(255,255,255,0.9)]">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
             Your Home, Done Right.
           </h1>
@@ -92,8 +102,6 @@ function HeroSection() {
           </Button>
         </div>
       </div>
-      {/* Decorative Element */}
-      <div className="absolute right-0 bottom-0 w-1/3 h-full bg-primary/5 -z-10 hidden lg:block" />
     </section>
   )
 }
@@ -104,21 +112,26 @@ const services = [
     icon: '🧱',
     title: 'Cement & Interlocking',
     description: 'Transform your front yard, backyard, or driveway with custom cement work and interlocking stone. Built to last through every Ontario winter — and beautiful year-round.',
+    image: '/service-cement-interlocking.jpg',
   },
   {
     icon: '🏠',
     title: 'Basement Finishing',
     description: 'Turn your unfinished basement into a space your family will actually use. From framing and drywall to full makeovers, we bring your vision to life.',
+    image: '/service-basement.jpg',
   },
   {
     icon: '🎨',
     title: 'Painting',
     description: 'Fresh walls make a world of difference. We handle interior painting for every room — clean lines, no mess, and a finish that lasts.',
+    image: '/service-painting.jpg',
+    imagePosition: '72% center',
   },
   {
     icon: '🪵',
     title: 'Flooring & Kitchens',
     description: 'New floors and updated kitchens add value and beauty to your home. We work with a range of materials to match your style and budget.',
+    image: '/service-flooring-kitchens.jpg',
   },
 ]
 
@@ -132,8 +145,16 @@ function ServicesSection() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <Card key={index} className="bg-background border-border hover:shadow-lg transition-shadow group">
-              <CardContent className="p-6">
+            <Card key={index} className="relative min-h-[455px] overflow-hidden border-border bg-background transition-shadow hover:shadow-lg group">
+              <img
+                src={service.image}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity duration-300 group-hover:opacity-90"
+                style={{ objectPosition: service.imagePosition ?? 'center' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/58 to-background/72" />
+              <CardContent className="relative p-6">
                 <div className="text-4xl mb-4">{service.icon}</div>
                 <h3 className="text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
                   {service.title}
@@ -195,7 +216,14 @@ function TrustSection() {
 
 // Gallery Section
 function GallerySection() {
-  const placeholders = Array(6).fill(null)
+  const projects = [
+    { image: '/work-1.jpg', title: 'Project photo 1' },
+    { image: '/work-2.jpg', title: 'Project photo 2' },
+    { image: '/work-3.jpg', title: 'Project photo 3' },
+    { image: '/work-4.jpg', title: 'Project photo 4' },
+    { image: '/work-5.jpg', title: 'Project photo 5' },
+    { image: '/work-6.jpg', title: 'Project photo 6' },
+  ]
 
   return (
     <section id="work" className="py-20 bg-card">
@@ -205,17 +233,16 @@ function GallerySection() {
           Take a look at some of the projects we&apos;ve completed for Hamilton homeowners just like you.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {placeholders.map((_, index) => (
+          {projects.map((project, index) => (
             <div
               key={index}
-              className="aspect-[4/3] bg-muted rounded-lg overflow-hidden flex items-center justify-center group hover:bg-primary/10 transition-colors cursor-pointer"
+              className="aspect-[4/3] bg-muted rounded-lg overflow-hidden group cursor-pointer shadow-sm"
             >
-              <div className="text-center p-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">📷</span>
-                </div>
-                <p className="text-muted-foreground text-sm">Project Photo {index + 1}</p>
-              </div>
+              <img
+                src={project.image}
+                alt={project.title}
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
             </div>
           ))}
         </div>
@@ -373,7 +400,7 @@ function ContactSection() {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Tell us about your project
+                    Tell us about your project (optional)
                   </label>
                   <Textarea
                     id="message"
