@@ -29,9 +29,9 @@ function Header() {
       {/* Top Bar */}
       <div className="bg-primary text-primary-foreground py-2">
         <div className="container mx-auto px-4 flex justify-center md:justify-end">
-          <a href="tel:905-555-5555" className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity">
+          <a href="tel:289-633-7648" className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity">
             <Phone className="w-4 h-4" />
-            <span>Call us today — Hamilton & GTA: (905) 555-5555</span>
+            <span>Call us today — Hamilton & GTA: (289) 633-7648</span>
           </a>
         </div>
       </div>
@@ -423,8 +423,8 @@ function ContactSection() {
             <p className="text-muted-foreground">
               <Phone className="inline w-4 h-4 mr-2" />
               Prefer to call? Reach us at{' '}
-              <a href="tel:905-555-5555" className="text-primary hover:underline font-medium">
-                (905) 555-5555
+              <a href="tel:289-633-7648" className="text-primary hover:underline font-medium">
+                (289) 633-7648
               </a>
             </p>
             <p className="text-muted-foreground">
