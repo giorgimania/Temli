@@ -1,6 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
+import { sendQuote, type QuoteState } from '@/app/actions/send-quote'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -302,22 +304,26 @@ function TestimonialsSection() {
   )
 }
 
+// Submit button with pending state
+function SubmitButton() {
+  const { pending } = useFormStatus()
+  return (
+    <Button
+      type="submit"
+      size="lg"
+      disabled={pending}
+      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+    >
+      {pending ? 'Sending...' : 'Send My Request →'}
+    </Button>
+  )
+}
+
 // Contact Form Section
 function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    service: '',
-    message: '',
-  })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
-    alert('Thank you! We will get back to you within 24 hours.')
-  }
+  const initialState: QuoteState = { success: false, message: '' }
+  const [state, formAction] = useActionState(sendQuote, initialState)
+  const [service, setService] = useState('')
 
   return (
     <section id="contact" className="py-20 bg-card">
@@ -330,17 +336,16 @@ function ContactSection() {
 
           <Card className="bg-background border-border">
             <CardContent className="p-6 md:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form action={formAction} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     Full Name
                   </label>
                   <Input
                     id="name"
+                    name="name"
                     type="text"
                     placeholder="Your name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     className="bg-card"
                   />
@@ -353,10 +358,9 @@ function ContactSection() {
                     </label>
                     <Input
                       id="phone"
+                      name="phone"
                       type="tel"
-                      placeholder="(905) 555-5555"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="(289) 633-7648"
                       required
                       className="bg-card"
                     />
@@ -367,10 +371,9 @@ function ContactSection() {
                     </label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="you@email.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
                       className="bg-card"
                     />
@@ -381,10 +384,7 @@ function ContactSection() {
                   <label htmlFor="service" className="block text-sm font-medium text-foreground mb-2">
                     Service Needed
                   </label>
-                  <Select
-                    value={formData.service}
-                    onValueChange={(value) => setFormData({ ...formData, service: value })}
-                  >
+                  <Select name="service" value={service} onValueChange={setService}>
                     <SelectTrigger className="bg-card">
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
@@ -404,17 +404,25 @@ function ContactSection() {
                   </label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder="Describe your project, timeline, and any specific requirements..."
                     rows={4}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="bg-card"
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                  Send My Request →
-                </Button>
+                <SubmitButton />
+
+                {state.message && (
+                  <p
+                    role="status"
+                    className={`text-center text-sm font-medium ${
+                      state.success ? 'text-primary' : 'text-destructive'
+                    }`}
+                  >
+                    {state.message}
+                  </p>
+                )}
               </form>
             </CardContent>
           </Card>
