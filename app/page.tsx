@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useActionState } from 'react'
+import { useState, useActionState, useEffect } from 'react'
 import { useFormStatus } from 'react-dom'
 import { sendQuote, type QuoteState } from '@/app/actions/send-quote'
 import { Button } from '@/components/ui/button'
@@ -9,6 +9,10 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Phone, MapPin, Star, CheckCircle2, Menu, X, Home } from 'lucide-react'
+
+function trackCallConversion() {
+  window.gtag('event', 'conversion', { send_to: 'AW-18240008778/DacDCLmgqs0cEMrkwflD' })
+}
 
 // Logo Component
 function Logo() {
@@ -31,7 +35,7 @@ function Header() {
       {/* Top Bar */}
       <div className="bg-primary text-primary-foreground py-2">
         <div className="container mx-auto px-4 flex justify-center md:justify-end">
-          <a href="tel:289-633-7648" className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity">
+          <a href="tel:289-633-7648" onClick={trackCallConversion} className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity">
             <Phone className="w-4 h-4" />
             <span>Call us today — Hamilton & GTA: (289) 633-7648</span>
           </a>
@@ -325,6 +329,12 @@ function ContactSection() {
   const [state, formAction] = useActionState(sendQuote, initialState)
   const [service, setService] = useState('')
 
+  useEffect(() => {
+    if (state.success) {
+      window.gtag('event', 'conversion', { send_to: 'AW-18240008778/Xe57CLagqs0cEMrkwflD' })
+    }
+  }, [state.success])
+
   return (
     <section id="contact" className="py-20 bg-card">
       <div className="container mx-auto px-4">
@@ -431,7 +441,7 @@ function ContactSection() {
             <p className="text-muted-foreground">
               <Phone className="inline w-4 h-4 mr-2" />
               Prefer to call? Reach us at{' '}
-              <a href="tel:289-633-7648" className="text-primary hover:underline font-medium">
+              <a href="tel:289-633-7648" onClick={trackCallConversion} className="text-primary hover:underline font-medium">
                 (289) 633-7648
               </a>
             </p>
