@@ -33,7 +33,7 @@ function Header() {
         <div className="container mx-auto px-4 flex justify-center md:justify-end">
           <a href="tel:289-633-7648" className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity">
             <Phone className="w-4 h-4" />
-            <span>Call us today — Hamilton & GTA: (289) 633-7648</span>
+            <span>Call us today — Vaughan & GTA: (289) 633-7648</span>
           </a>
         </div>
       </div>
@@ -97,7 +97,7 @@ function HeroSection() {
             Your Home, Done Right.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl">
-            From your front driveway to your basement — Temli Inc. handles it all. Trusted by Hamilton homeowners for quality work, honest pricing, and a crew that treats your home like their own.
+            From your front driveway to your basement — Temli Inc. handles it all. Trusted by Vaughan homeowners for quality work, honest pricing, and a crew that treats your home like their own.
           </p>
           <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-semibold shadow-lg">
             <a href="#contact">Get a Free Quote →</a>
@@ -177,7 +177,7 @@ function ServicesSection() {
 const trustPoints = [
   {
     icon: MapPin,
-    title: 'Local Hamilton Crew',
+    title: 'Local Vaughan Crew',
     description: 'We live and work in this community. No subcontracting — just our own trusted team on every job.',
   },
   {
@@ -198,7 +198,7 @@ function TrustSection() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Why Choose Us?</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Hamilton homeowners trust Temli Inc. for a reason
+            Vaughan homeowners trust Temli Inc. for a reason
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {trustPoints.map((point, index) => (
@@ -232,7 +232,7 @@ function GallerySection() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Our Work Speaks for Itself</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Take a look at some of the projects we&apos;ve completed for Hamilton homeowners just like you.
+            Take a look at some of the projects we&apos;ve completed for Vaughan homeowners just like you.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project, index) => (
@@ -258,17 +258,17 @@ const testimonials = [
   {
     quote: "Temli did our entire backyard interlocking and it turned out incredible. They were on time, cleaned up every day, and the price was exactly what they quoted. Couldn't ask for more.",
     author: 'Sarah M.',
-    location: 'Hamilton',
+    location: 'Vaughan',
   },
   {
     quote: "We had our basement fully finished and two rooms painted. The team was professional and friendly the whole way through. We'll definitely be calling Temli again for our kitchen.",
     author: 'James & Lisa T.',
-    location: 'Ancaster',
+    location: 'Woodbridge',
   },
   {
     quote: "Best decision we made for our home. The front yard cement work is flawless. Neighbours keep asking who did it!",
     author: 'Roberto P.',
-    location: 'Stoney Creek',
+    location: 'Maple',
   },
 ]
 
@@ -278,7 +278,7 @@ function TestimonialsSection() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">What Our Customers Say</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Real reviews from Hamilton homeowners
+            Real reviews from Vaughan homeowners
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
@@ -437,7 +437,7 @@ function ContactSection() {
             </p>
             <p className="text-muted-foreground">
               <MapPin className="inline w-4 h-4 mr-2" />
-              Serving Hamilton, Ancaster, Stoney Creek, Dundas & surrounding GTA areas
+              Serving Vaughan, Woodbridge, Maple, Concord, Thornhill & surrounding GTA areas
             </p>
           </div>
         </div>
@@ -458,7 +458,7 @@ function Footer() {
             </div>
             <div>
               <span className="text-lg font-semibold">Temli Inc.</span>
-              <p className="text-sm opacity-70">Hamilton&apos;s trusted home renovation crew.</p>
+              <p className="text-sm opacity-70">Vaughan&apos;s trusted home renovation crew.</p>
             </div>
           </div>
 

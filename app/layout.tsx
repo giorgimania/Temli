@@ -11,9 +11,9 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Temli Inc. | Hamilton Home Renovation Contractor',
-  description: 'Trusted Hamilton home renovation contractor. Cement & interlocking, basement finishing, painting, flooring & kitchens. Quality work, honest pricing. Get a free quote today!',
-  keywords: 'Hamilton contractor, home renovation, basement finishing, interlocking, cement work, painting, flooring, kitchen renovation, Ancaster, Stoney Creek, Dundas',
+  title: 'Temli Inc. | Vaughan Home Renovation Contractor',
+  description: 'Trusted Vaughan home renovation contractor. Cement & interlocking, basement finishing, painting, flooring & kitchens. Quality work, honest pricing. Get a free quote today!',
+  keywords: 'Vaughan contractor, home renovation, basement finishing, interlocking, cement work, painting, flooring, kitchen renovation, Woodbridge, Maple, Concord, Thornhill',
 }
 
 export const viewport = {
